@@ -1,0 +1,42 @@
+/* 
+ * CSE 154 Creative Project 3
+ * Bible Chinese Worksheet Maker
+ * Author: Wei Zhang
+ * Date: 8/6/2022
+ */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=EB+Garamond:wght@700&family=Klee+One&display=swap');
+
+h1 {
+  font-family: "EB Garamond", Georgia, Times, serif;
+}
+
+#bible-reference {
+  font-weight: bold;
+}
+
+.char {
+  background-color: white;
+  border: 1px solid #ccc;
+/*  margin: 0 auto; */
+  width: 100px;
+  height: 100px;
+}
+
+#container div.char {
+  background-color: white;
+  border: 1px solid #ccc;
+/*  margin: 0 auto; */
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+}
+#container div.punctuation {
+  font-size: 50px;
+  display: inline-block;
+}
+
+.hidden {
+  display: none;
+}
