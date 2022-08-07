@@ -35,21 +35,21 @@
 
     // get selected text
     const selected = window.getSelection().toString();
+    const promises = [];
     for (const [index, char] of Array.from(selected).entries()) {
       if (!CHINESE.test(char)) { // punctuation & non-Chinese characters
-        console.log(char);
-        $("<div>").text(char)
-          .addClass("punctuation")
-          .appendTo($("#container"));
+        promises.push(Promise.resolve($("<div>").text(char).addClass("punctuation")));
       } else { // chinese characters
-        let data = await fetch(SVG_URL + char.charCodeAt(0) + ".svg")
+        promises.push(fetch(SVG_URL + char.charCodeAt(0) + ".svg")
           .then(checkStatus)
-          .then(resp => resp.text());
-          $("<div>").html(data)
-            .addClass("char")
-            .appendTo($("#container"));
+          .then(resp => resp.text())
+          .then(data => ($("<div>").html(data).addClass("char"))));
       }
     }
+    const results = await Promise.all(promises);
+    results.forEach(div => {
+      $("#container").append(div);
+    })
   }
 
   function getBiblePassage() {
